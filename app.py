@@ -32,19 +32,21 @@ def main():
         columns = st.sidebar.multiselect("Enter the variables", df.columns)
 
         sidebars = {}
-        for y in columns:
-            ucolumns=list(df[y].unique())
-            print (ucolumns)
+        # for y in columns:
+        #     ucolumns=list(df[y].unique())
+        #     print (ucolumns)
 
-            sidebars[y]=st.sidebar.multiselect('Filter '+y, ucolumns)   
+        #     sidebars[y]=st.sidebar.multiselect('Filter '+y, ucolumns)   
         
         if st.button('Start Processing', help="Process Dataframe"):
             st.header('Addes Column')
             df['new_col'] = 1
-            if input2=="":
-                df.fillna(0,inplace=True)
-            else:
-                df[input2].fillna(0,inplace=True)
+            df1=df.copy()
+            df1[columns]=df[columns].fillna(0)
+            # if input2=="":
+            #     df.fillna(0,inplace=True)
+            # else:
+            #     df[input2].fillna(0,inplace=True)
             st.dataframe(df)
             st.balloons()
             import io
@@ -62,6 +64,11 @@ def main():
                 
 if __name__ == "__main__":
     main()
+
+
+
+
+
 
 
 
